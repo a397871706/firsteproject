@@ -30,7 +30,10 @@ private:
     MainForm();
 
     CLabelUI* logo_;
-    CButtonUI* medal_;
+    CTextUI* posX_;
+    CTextUI* posY_;
+    HWND llkWnd_;
+    RECT rc_;
     std::unique_ptr<PopWinMedal> pop_medal_;
     static MainForm* mainform_;
 };
