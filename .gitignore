@@ -1,0 +1,8 @@
+/Debug
+/ipch
+/bin/*.pdb
+/bin/*.dll
+/bin/*.exp
+/bin/*.lib
+/bin/*.exe
+/bin/*.ilk
