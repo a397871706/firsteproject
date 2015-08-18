@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Window caption="0,0,0,30" mininfo="200,300" size="281,698">
+	<Font size="12" default="true" italic="false" bold="false" name="微软雅黑" id="1"/>
+	<Font size="14" italic="false" bold="false" name="楷体" id="2"/>
+	<VerticalLayout bkimage="file='5253be0e29b09.jpg'" dest="281,698"> <!-- 垂直 -->
+		<HorizontalLayout height="30">
+			<HorizontalLayout width="185">
+				<!--显示图片和文字 -->
+				<Control float="true" pos="10,5,25,23" height="18" width="15"  bkimage="logo.png" />
+				<Label name="logotitle" float="true" pos="32,5,52,25" font="2" textcolor="#FFFFFFFF" />
+			</HorizontalLayout>
+			<HorizontalLayout> <!--水平 -->
+			<!-- 显示图标 Button | Image -->
+			<Button name="medal" float="false" pos="1,3,16,23" normalimage="file='medal.png' mask='0xffffffff'" hotimage="file='medal.png' mask='0xffffffff'" pushedimage="file='medal.png' mask='0xffffffff'" />
+			<Button name="minbtn" float="false" pos="18,3,32,23" normalimage="file='medal.png' mask='0xffffffff'" hotimage="file='medal.png' mask='0xffffffff'" pushedimage="file='medal.png' mask='0xffffffff'" />
+			<Button name="closebtn" float="false" pos="34,3,49,23" normalimage="file='medal.png' mask='0xffffffff'" hotimage="file='medal.png' mask='0xffffffff'" pushedimage="file='medal.png' mask='0xffffffff'" />
+			</HorizontalLayout>
+		</HorizontalLayout>
+	</VerticalLayout>	
+</Window>
