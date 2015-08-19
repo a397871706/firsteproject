@@ -19,6 +19,9 @@
     <Filter Include="thread">
       <UniqueIdentifier>{654a9f13-b192-45c0-9f39-0d157a002a10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dialog">
+      <UniqueIdentifier>{5ce90fe7-ee76-45f6-b78b-cb61f9c8a1c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -60,6 +63,12 @@
     <ClInclude Include="thread\AutoLock.h">
       <Filter>thread</Filter>
     </ClInclude>
+    <ClInclude Include="dialog\dialogs.h">
+      <Filter>dialog</Filter>
+    </ClInclude>
+    <ClInclude Include="string\string_split.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -82,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="thread\AutoLock.cpp">
       <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="dialog\dialogs.cpp">
+      <Filter>dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="string\string_split.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

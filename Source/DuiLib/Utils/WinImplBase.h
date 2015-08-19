@@ -70,6 +70,10 @@ namespace DuiLib
 		virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 		virtual LRESULT HandleCustomMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 		virtual LONG GetStyle();
+
+#ifdef _XDEBUG
+        virtual LRESULT OnNcDbclick(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+#endif
 	};
 }
 

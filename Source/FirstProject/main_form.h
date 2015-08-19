@@ -24,12 +24,15 @@ protected:
     virtual void OnClick(TNotifyUI& msg) override;
     virtual void OnFinalMessage(HWND hWnd) override;
 
-    virtual void Notify(TNotifyUI& msg) override;
+    virtual void Notify(TNotifyUI& msg) override;    
 
 private:
     MainForm();
+    void OnStartclick();
 
     CLabelUI* logo_;
+    CButtonUI* start_;
+    POINT currentPoint_;
     CTextUI* posX_;
     CTextUI* posY_;
     HWND llkWnd_;

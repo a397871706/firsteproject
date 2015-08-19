@@ -408,6 +408,9 @@ LRESULT WindowImplBase::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_LBUTTONDOWN:	lRes = OnLButtonDown(uMsg, wParam, lParam, bHandled); break;
 	case WM_MOUSEMOVE:		lRes = OnMouseMove(uMsg, wParam, lParam, bHandled); break;
 	case WM_MOUSEHOVER:	lRes = OnMouseHover(uMsg, wParam, lParam, bHandled); break;
+#ifdef _XDEBUG
+    case WM_NCLBUTTONDBLCLK: lRes = OnNcDbclick(uMsg, wParam, lParam, bHandled); break;
+#endif
 	default:				bHandled = FALSE; break;
 	}
 	if (bHandled) return lRes;
@@ -464,5 +467,12 @@ void WindowImplBase::Notify(TNotifyUI& msg)
 {
 	return CNotifyPump::NotifyPump(msg);
 }
+#ifdef _XDEBUG
+LRESULT WindowImplBase::OnNcDbclick(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
+{
+    bHandled = TRUE;
+    return 0;
+}
+#endif
 
 }
