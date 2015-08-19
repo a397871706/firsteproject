@@ -38,8 +38,11 @@ LPCTSTR MainForm::GetWindowClassName() const
 MainForm::MainForm()
     : WindowImplBase()
     , logo_()
-    , medal_()
     , pop_medal_()
+    , llkWnd_()
+    , rc_()
+    , posX_()
+    , posY_()
 {
 
 }
@@ -50,10 +53,9 @@ void MainForm::InitWindow()
 
     logo_ = reinterpret_cast<CLabelUI*>(m_PaintManager.FindControl(L"logotitle"));
     assert(logo_);    
-    logo_->SetText(L"J Z");
-    medal_ = reinterpret_cast<CButtonUI*>(m_PaintManager.FindControl(L"medal"));
-    assert(medal_);
-    medal_->SetToolTip(L"未领取勋章的、领取后更安全。");
+    logo_->SetText(L"连连看外怪");
+    posX_ = reinterpret_cast<CTextUI*>(m_PaintManager.FindControl(L"txt_pos_x"));
+    posY_ = reinterpret_cast<CTextUI*>(m_PaintManager.FindControl(L"txt_pos_y"));
 }
 
 void MainForm::Notify(TNotifyUI& msg)
@@ -64,13 +66,11 @@ void MainForm::Notify(TNotifyUI& msg)
 void MainForm::OnClick(TNotifyUI& msg)
 {
     __super::OnClick(msg);
-    if (msg.pSender->GetName() == L"medal")
+    if (msg.pSender->GetName() == L"btn_start")
     {
-        if (!pop_medal_)
-            pop_medal_.reset(new PopWinMedal());
-
-        pop_medal_->ShowWindow();
-        pop_medal_->CenterWindow();
+        llkWnd_ = ::FindWindow(L"", L"QQ游戏 - 连连看角色版");
+        ::GetWindowRect(llkWnd_, &rc_);
+        //::ScreenToClient()
     }
 }
 
