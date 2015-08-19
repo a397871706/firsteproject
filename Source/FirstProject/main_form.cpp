@@ -78,11 +78,6 @@ void MainForm::OnClick(TNotifyUI& msg)
     if (start_ != nullptr && msg.pSender == start_)
     {
         OnStartclick();
-    if (msg.pSender->GetName() == L"btn_start")
-    {
-        llkWnd_ = ::FindWindow(L"", L"QQ游戏 - 连连看角色版");
-        ::GetWindowRect(llkWnd_, &rc_);
-        //::ScreenToClient()
     }
 }
 
@@ -93,10 +88,6 @@ void MainForm::OnFinalMessage(HWND hWnd)
 
 void MainForm::OnStartclick()
 {
-    OpenFileDialog dl(m_hWnd, L"所有文件(*.*)\0*.*\0\0");
-    dl.DoModel();
-    
-    return; 
     llkWnd_ = ::FindWindow(NULL, L"QQ游戏 - 连连看角色版");
     if (NULL == llkWnd_)
 #ifdef _DEBUG
@@ -112,9 +103,7 @@ void MainForm::OnStartclick()
     s << rc_.top;
     posY_->SetText(s.str().c_str());
     ::GetCursorPos(&currentPoint_);
-    POINT clientPoint = { 0 };
-    ::ScreenToClient(llkWnd_, &clientPoint);
-    ::SetCursorPos(clientPoint.x + 520, clientPoint.y + 370);
+    ::SetCursorPos(rc_.left + 646, rc_.top + 561);
     mouse_event(MOUSEEVENTF_LEFTDOWN, NULL, NULL, NULL, NULL);
     mouse_event(MOUSEEVENTF_LEFTUP, NULL, NULL, NULL,NULL);
     ::SetCursorPos(currentPoint_.x, currentPoint_.y);
