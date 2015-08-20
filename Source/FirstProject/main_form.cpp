@@ -43,14 +43,19 @@ MainForm::MainForm()
     : WindowImplBase()
     , logo_()
     , pop_medal_()
-    , llkWnd_()
     , rc_()
     , posX_()
     , posY_()
     , start_()
     , currentPoint_()
 {
-
+    _asm
+    {
+        MOV  DX, 0H;
+        MOV  AX, 8885H;
+        MOV  BX, 223H;
+        DIV  BX;
+    }
 }
 
 void MainForm::InitWindow()
@@ -84,14 +89,21 @@ void MainForm::OnFinalMessage(HWND hWnd)
 
 void MainForm::OnStartclick()
 {
-    llkWnd_ = ::FindWindow(NULL, L"QQ游戏 - 连连看角色版");
-    if (NULL == llkWnd_)
+    OnStartGame();
+}
+
+void MainForm::OnStartGame()
+{
+    HWND hWnd = ::FindWindow(NULL, L"QQ游戏 - 连连看角色版");
+    if (NULL == hWnd)
 #ifdef _DEBUG
         ::MessageBox(NULL, L"请运行游戏!", L"错误", MB_OK);
+        return;
 #else
+        return;
 #endif
 
-    ::GetWindowRect(llkWnd_, &rc_);
+    ::GetWindowRect(hWnd, &rc_);
     std::wostringstream s;
     s << rc_.left;
     posX_->SetText(s.str().c_str());
@@ -101,8 +113,19 @@ void MainForm::OnStartclick()
     ::GetCursorPos(&currentPoint_);
     ::SetCursorPos(rc_.left + 646, rc_.top + 561);
     mouse_event(MOUSEEVENTF_LEFTDOWN, NULL, NULL, NULL, NULL);
-    mouse_event(MOUSEEVENTF_LEFTUP, NULL, NULL, NULL,NULL);
+    mouse_event(MOUSEEVENTF_LEFTUP, NULL, NULL, NULL, NULL);
     ::SetCursorPos(currentPoint_.x, currentPoint_.y);
+
+    DWORD processid;
+    ::GetWindowThreadProcessId(hWnd, &processid);
+    if (processid == 0)
+        return;
+
+    HANDLE hProcess = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, processid);
+    if (NULL != hProcess)
+    {
+        //::ReadProcessMemory(hProcess,)
+    }
 }
 
 

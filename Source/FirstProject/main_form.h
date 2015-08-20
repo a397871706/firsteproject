@@ -29,13 +29,13 @@ protected:
 private:
     MainForm();
     void OnStartclick();
+    void OnStartGame();
 
     CLabelUI* logo_;
     CButtonUI* start_;
     POINT currentPoint_;
     CTextUI* posX_;
     CTextUI* posY_;
-    HWND llkWnd_;
     RECT rc_;
     std::unique_ptr<PopWinMedal> pop_medal_;
     static MainForm* mainform_;
