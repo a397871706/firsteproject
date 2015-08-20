@@ -1,7 +1,7 @@
 #ifndef _POP_WIN_MEDAL_H_
 #define _POP_WIN_MEDAL_H_
 
-#include "UIlib.h"
+#include "../../DuiLib/UIlib.h"
 
 #include "../thread/win_thread.h"
 

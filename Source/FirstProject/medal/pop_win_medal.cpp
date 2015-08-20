@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "pop_win_medal.h"
 
-#include "StdoutLog.h"
-#include "SocketHandler.h"
-#include "HttpGetSocket.h"
+#include "../../Sockets/StdoutLog.h"
+#include "../../Sockets/SocketHandler.h"
+#include "../../Sockets/HttpGetSocket.h"
 
 
 

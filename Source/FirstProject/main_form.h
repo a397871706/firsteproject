@@ -1,7 +1,7 @@
 #ifndef _MAIN_FORM_H_
 #define _MAIN_FORM_H_
 
-#include "UIlib.h"
+#include "../DuiLib/UIlib.h"
 
 #include <memory>
 

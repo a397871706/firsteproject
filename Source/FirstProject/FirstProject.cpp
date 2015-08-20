@@ -5,7 +5,7 @@
 #include "FirstProject.h"
 #include "main_form.h"
 
-#include "UIlib.h"
+#include "../DuiLib/UIlib.h"
 #include <assert.h>
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,

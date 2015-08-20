@@ -61,10 +61,6 @@ void MainForm::InitWindow()
     posX_ = reinterpret_cast<CTextUI*>(m_PaintManager.FindControl(L"txt_pos_x"));
     posY_ = reinterpret_cast<CTextUI*>(m_PaintManager.FindControl(L"txt_pos_y"));
     start_ = reinterpret_cast<CButtonUI*>(m_PaintManager.FindControl(L"btn_start"));    
-    assert(logo_);    
-    logo_->SetText(L"连连看外怪");
-    posX_ = reinterpret_cast<CTextUI*>(m_PaintManager.FindControl(L"txt_pos_x"));
-    posY_ = reinterpret_cast<CTextUI*>(m_PaintManager.FindControl(L"txt_pos_y"));
 }
 
 void MainForm::Notify(TNotifyUI& msg)

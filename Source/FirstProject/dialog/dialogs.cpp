@@ -5,15 +5,14 @@
 #include <commdlg.h>
 #include <assert.h>
 
-OpenFileDialog::OpenFileDialog(HWND hWnd, const wchar_t* filter,
+OpenFileDialog::OpenFileDialog(const wchar_t* filter,
                                const wchar_t* title)
 #ifndef _XDEBUG  
     : FileDialogBase()
     , hWnd_(hWnd)
     , filter_(filter)
 #else
-    : hWnd_(hWnd)
-    , filter_(filter)
+    : filter_(filter)
     , title_(title)
 #endif
 
@@ -25,7 +24,7 @@ OpenFileDialog::~OpenFileDialog()
 
 }
 
-std::vector<std::wstring> OpenFileDialog::DoModel()
+std::vector<std::wstring> OpenFileDialog::DoModel(HWND parert)
 {
     std::wstring fileNamesBuffer;
     const int fileNameBufferSize = 2 * 1024 * 1024;
@@ -33,7 +32,7 @@ std::vector<std::wstring> OpenFileDialog::DoModel()
 
     OPENFILENAMEW openfilename = { 0 };
     openfilename.lStructSize = sizeof(openfilename);
-    openfilename.hwndOwner = hWnd_;
+    openfilename.hwndOwner = parert;
     openfilename.lpstrFilter = filter_;
     openfilename.lpstrCustomFilter = NULL;
     openfilename.nFilterIndex = 1;
@@ -74,6 +73,47 @@ std::vector<std::wstring> OpenFileDialog::DoModel()
         fileNamesBuffer[fileNameBufferSize - 2] = '\0';
         parserFileName(&fileNamesBuffer[0], &result);
     }
+
+    return std::move(result);
+}
+
+SaveFileDialog::SaveFileDialog(const wchar_t* filter, 
+                               const std::wstring& fileTitle, 
+                               const std::wstring& dialogTile, 
+                               const std::wstring& defaultFileExt)
+    : fileTitle_(fileTitle)
+    , filter_(filter)
+    , dialogTile_(dialogTile)
+    , defaultFileExt_(defaultFileExt)
+{
+
+}
+
+SaveFileDialog::~SaveFileDialog()
+{
+
+}
+
+std::wstring SaveFileDialog::DoModel(HWND parert)
+{
+    wstring fileName = fileTitle_;
+    fileName.resize(MAX_PATH);
+
+    OPENFILENAME params = { 0 };
+    params.lStructSize = sizeof(params);
+    params.hwndOwner = parert;
+    params.lpstrFilter = filter_;
+    params.lpstrCustomFilter = NULL;
+    params.nFilterIndex = 0;
+    params.lpstrFile = &fileName[0];
+    params.nMaxFile = fileName.length();
+    params.lpstrTitle = NULL;
+    params.Flags = OFN_OVERWRITEPROMPT | OFN_CREATEPROMPT;
+    params.lpstrDefExt = defaultFileExt_.c_str();
+
+    wstring result;
+    if (GetSaveFileNameW(&params))
+        result = params.lpstrFile;
 
     return std::move(result);
 }

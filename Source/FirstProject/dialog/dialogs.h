@@ -30,32 +30,38 @@ class OpenFileDialog
 #endif
 {
 public:
-    OpenFileDialog(HWND hWnd, const wchar_t* filter, 
+    OpenFileDialog(const wchar_t* filter, 
                    const wchar_t* title = NULL);
     ~OpenFileDialog();
 #ifndef _XDEBUG
     virtual std::vector<std::wstring> DoModel() override;
 #else
-    std::vector<std::wstring> DoModel();
+    std::vector<std::wstring> DoModel(HWND parert);
 #endif
 
 private:
-    HWND hWnd_;
     const wchar_t* filter_;
     const wchar_t* title_;
 
 };
 
-/*class SaveFileDialog
+class SaveFileDialog
 {
 public:
-    SaveFileDialog(HWND hWnd, const wchar_t* filter, 
-                   const wchar_t* title = NULL);
+    SaveFileDialog(const wchar_t* filter, 
+                   const std::wstring& fileTitle, 
+                   const std::wstring& dialogTile,
+                   const std::wstring& defaultFileExt);
+
     ~SaveFileDialog();
 
-    std::wstring DoModel();
+    std::wstring DoModel(HWND parerts);
 
-
-};*/
+private:
+    const wchar_t* filter_;
+    std::wstring fileTitle_;
+    std::wstring dialogTile_;
+    std::wstring defaultFileExt_;
+};
 
 #endif
