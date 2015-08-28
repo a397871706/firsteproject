@@ -24,7 +24,7 @@ private:
     bool PeekTask();
 
     std::queue<CallBack> message_;
-    CritSect lock_;
+    mutable CritSect lock_;
     HANDLE hEvent_;
 };
 
