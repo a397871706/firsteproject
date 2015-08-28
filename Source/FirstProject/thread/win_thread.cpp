@@ -23,6 +23,7 @@ WinThread::WinThread(const std::string& thread_name)
 
 WinThread::~WinThread()
 {
+    isrunning_ = false;
     if (handle_)
         ::CloseHandle(handle_);
 }

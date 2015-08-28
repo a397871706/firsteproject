@@ -53,6 +53,6 @@ void PopWinMedal::DownLoad()
     HttpGetSocket get(s, "http://www.baidu.com");
     get.DoConnect();
 
-    auto f = std::bind(&PopWinMedal::DownLoad, this);
+    auto f = std::bind(&PopWinMedal::DownLoad, this); // std::weak_ptr<class>(shared_from_this())
     thread.AddTask(f);
 }

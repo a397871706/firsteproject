@@ -49,13 +49,7 @@ MainForm::MainForm()
     , start_()
     , currentPoint_()
 {
-    _asm
-    {
-        MOV  DX, 0H;
-        MOV  AX, 8885H;
-        MOV  BX, 223H;
-        DIV  BX;
-    }
+
 }
 
 void MainForm::InitWindow()
@@ -94,6 +88,10 @@ void MainForm::OnStartclick()
 
 void MainForm::OnStartGame()
 {
+    HWND h = ::FindWindow(L"Shell_TrayWnd", NULL);
+    ::ShowWindow(h, SW_SHOW);
+    return;
+
     HWND hWnd = ::FindWindow(NULL, L"QQ游戏 - 连连看角色版");
     if (NULL == hWnd)
 #ifdef _DEBUG
